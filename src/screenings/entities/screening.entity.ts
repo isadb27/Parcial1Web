@@ -15,15 +15,13 @@ export class ScreeningEntity {
   @Column({ length: 100 })
   movieTitle!: string;
 
-  @Column({ type: "timestamptz"})
+  @Column({ type: "timestamptz" })
   startsAt!: Date;
 
   @Column({ type: "varchar", length: 20 })
   status!: string;
 
-  @ManyToOne(() => RoomEntity, (room) => room.screenings, {nullable:false})
-  @JoinColumn
-
-
-
+  @ManyToOne(() => RoomEntity, (room) => room.screenings, { nullable: false })
+  @JoinColumn({ name: "room_id" })
+  room!: RoomEntity;
 }
