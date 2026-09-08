@@ -21,6 +21,10 @@ export class RoomsService {
     }
     const existing = await this.roomsRepository.findOneBy({ name: dto.name });
     if (existing) {
+        throw new ConflictException("Room with name "&{dto.name}" alredy exists");
     }
+
+    const room = this.roomsRepository.create(dto);
+    return this.roomsRepository.save(room);
   }
 }
